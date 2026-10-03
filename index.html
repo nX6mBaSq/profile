@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ICHI — VJ・Visual Operator / Based in Osaka</title>
+<meta name="description" content="大阪を拠点に活動するVJ ICHIのプロフィール。VJ・映像オペレーション、Live Visual制作、LEDの施工・レンタル・販売。">
+<meta property="og:title" content="ICHI — VJ・Visual Operator">
+<meta property="og:description" content="大阪を拠点に活動するVJ。音と空間に寄り添う映像を組み立てます。">
+<meta property="og:type" content="website">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%230A0A0A'/%3E%3Ccircle cx='50' cy='50' r='30' fill='none' stroke='%23F2F2F2' stroke-width='6'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0A0A0A;
+    --fg: #F2F2F2;
+    --muted: #8A8A8A;
+    --line: #2A2A2A;
+    --sub: #CFCFCF;
+    --mono: 'JetBrains Mono', ui-monospace, Menlo, monospace;
+    --sans: 'Noto Sans JP', system-ui, sans-serif;
+    --gutter: 20px;
+  }
+  *, *::before, *::after { box-sizing: border-box; }
+  html { scroll-behavior: smooth; scroll-padding-top: 56px; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--fg);
+    font-family: var(--sans);
+    -webkit-font-smoothing: antialiased;
+  }
+  a { color: inherit; text-decoration: none; }
+  img { display: block; max-width: 100%; }
+  .mono { font-family: var(--mono); }
+  .muted { color: var(--muted); }
+  .jp {
+    letter-spacing: .04em;
+    font-feature-settings: 'palt';
+    word-break: auto-phrase;
+    text-wrap: pretty;
+  }
+
+  /* ---------- Header ---------- */
+  .site-header {
+    position: sticky; top: 0; z-index: 10;
+    display: flex; justify-content: space-between; align-items: center;
+    height: 56px; padding: 0 var(--gutter);
+    background: rgba(10,10,10,.88);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--line);
+    font-family: var(--mono);
+  }
+  .logo { font-weight: 700; font-size: 15px; letter-spacing: .12em; }
+  .gnav { display: flex; gap: 4px; font-size: 10px; letter-spacing: .08em; color: var(--muted); }
+  .gnav a { padding: 8px 6px; transition: color .2s; }
+  .gnav a:hover, .gnav a.is-active { color: var(--fg); }
+  .gnav .lbl { display: none; }
+
+  /* ---------- Section base ---------- */
+  .section {
+    padding: 56px var(--gutter);
+    border-bottom: 1px solid var(--line);
+    display: flex; flex-direction: column; gap: 24px;
+  }
+  .sec-title { font: 500 12px var(--mono); letter-spacing: .12em; margin: 0; }
+  .sec-title .muted { margin-right: .3em; }
+
+  /* ---------- KV ---------- */
+  .kv {
+    padding: 40px var(--gutter);
+    border-bottom: 1px solid var(--line);
+    display: flex; flex-direction: column; gap: 24px;
+  }
+  .kv-meta {
+    display: flex; justify-content: space-between;
+    font: 10px var(--mono); letter-spacing: .1em; color: var(--muted);
+    font-variant-numeric: tabular-nums;
+  }
+  .kv-main { display: flex; flex-direction: column; gap: 24px; }
+  .kv-meta.pc-row { display: none; }
+  .icon {
+    position: relative;
+    width: 240px; aspect-ratio: 1; align-self: center;
+    border: 1px solid var(--line); border-radius: 50%;
+    overflow: hidden;
+    background: repeating-linear-gradient(135deg, #111 0 8px, #161616 8px 16px);
+    display: flex; align-items: center; justify-content: center;
+    font: 10px var(--mono); color: var(--muted); letter-spacing: .1em;
+  }
+  .icon img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+  .kv-id { display: flex; justify-content: space-between; align-items: flex-end; gap: 16px; }
+  .kv-name {
+    margin: 0;
+    font: 700 64px/.85 var(--mono); letter-spacing: -.04em;
+  }
+  .kv-role {
+    margin: 0;
+    font: 500 12px/1.6 var(--mono); letter-spacing: .04em; text-align: right;
+  }
+  .spec { margin: 0; border-top: 1px solid var(--fg); font: 12px var(--mono); }
+  .spec div {
+    display: grid; grid-template-columns: 72px 1fr;
+    padding: 11px 0; border-bottom: 1px solid var(--line);
+  }
+  .spec dt { color: var(--muted); letter-spacing: .1em; }
+  .spec dd { margin: 0; }
+
+  /* ---------- Profile ---------- */
+  .lead { margin: 0; font-size: 15px; line-height: 1.85; }
+
+  /* ---------- Service ---------- */
+  .services { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--fg); }
+  .service {
+    padding: 20px 0 24px; border-bottom: 1px solid var(--line);
+    display: flex; flex-direction: column; gap: 10px;
+  }
+  .service-no { font: 11px var(--mono); letter-spacing: .1em; color: var(--muted); }
+  .service-ja { margin: 0; font-size: 18px; font-weight: 700; letter-spacing: .02em; font-feature-settings: 'palt'; }
+  .service-desc { margin: 0; font-size: 13px; line-height: 1.8; color: var(--sub); }
+
+  /* ---------- Performances ---------- */
+  .perf-head { display: flex; justify-content: space-between; align-items: baseline; }
+  .perf-legend { font: 10px var(--mono); color: var(--muted); letter-spacing: .12em; }
+  .perf-legend .on { color: var(--fg); }
+  .perf-legend .pc-only { display: none; }
+  .flyers {
+    list-style: none; margin: 0; padding: 0;
+    display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 28px 12px;
+  }
+  .flyer { display: flex; flex-direction: column; gap: 8px; }
+  .flyer-img {
+    position: relative; aspect-ratio: 1 / 1; overflow: hidden;
+    border: 1px dashed #444;
+    background: repeating-linear-gradient(135deg, #111 0 8px, #161616 8px 16px);
+    display: flex; align-items: center; justify-content: center;
+    font: 10px var(--mono); color: var(--muted);
+  }
+  .flyer-img img {
+    position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;
+    transition: transform .4s ease;
+  }
+  .flyer:hover .flyer-img img { transform: scale(1.03); }
+  .flyer-cap { font: 10.5px/1.6 var(--mono); }
+  .flyer-cap .muted { font-variant-numeric: tabular-nums; }
+
+  /* ---------- Contact ---------- */
+  .cta {
+    display: flex; justify-content: space-between; align-items: center;
+    height: 60px; padding: 0 20px;
+    background: var(--fg); color: var(--bg);
+    font: 700 14px var(--mono); letter-spacing: .1em;
+    transition: background .2s;
+  }
+  .cta:hover { background: #fff; }
+  .cta .arrow { transition: transform .2s; }
+  .cta:hover .arrow { transform: translateX(4px); }
+  .cta:focus-visible, .gnav a:focus-visible, .sns a:focus-visible, .to-top:focus-visible {
+    outline: 2px solid var(--fg); outline-offset: 3px;
+  }
+  .sns { list-style: none; margin: 0; padding: 0; font: 12px var(--mono); }
+  .sns a {
+    display: flex; justify-content: space-between; align-items: center;
+    height: 48px; border-bottom: 1px solid var(--line);
+    transition: color .2s;
+  }
+  .sns a:hover { color: var(--muted); }
+  .contact-section { border-bottom: 0; }
+
+  /* ---------- Footer ---------- */
+  .site-footer {
+    display: flex; justify-content: space-between;
+    padding: 20px var(--gutter); border-top: 1px solid var(--line);
+    font: 10px var(--mono); letter-spacing: .1em; color: var(--muted);
+  }
+  .site-footer .pc-only { display: none; }
+  .to-top:hover { color: var(--fg); }
+
+  /* ---------- Reveal ---------- */
+  .reveal { opacity: 0; transform: translateY(12px); transition: opacity .6s ease, transform .6s ease; }
+  .reveal.is-in { opacity: 1; transform: none; }
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    .reveal { opacity: 1; transform: none; transition: none; }
+  }
+
+  /* =================================================
+     PC (≥ 960px) — 12カラムグリッド / 左3列ラベル + 右9列
+     ================================================= */
+  @media (min-width: 960px) {
+    :root { --gutter: 64px; }
+    html { scroll-padding-top: 72px; }
+
+    .site-header { height: 72px; }
+    .logo { font-size: 18px; }
+    .gnav { gap: 24px; font-size: 12px; letter-spacing: .12em; }
+    .gnav .lbl { display: inline; margin-left: .5em; }
+
+    .grid12 {
+      display: grid; grid-template-columns: repeat(12, minmax(0, 1fr));
+      column-gap: 24px; max-width: 1440px; margin: 0 auto;
+    }
+
+    /* KV */
+    .kv { padding: 96px var(--gutter) 80px; display: block; }
+    .kv-main { grid-column: 1 / 9; flex-direction: row; align-items: flex-end; gap: clamp(32px, 3.4vw, 48px); }
+    .icon { flex: none; width: clamp(260px, 28vw, 400px); align-self: auto; font-size: 11px; }
+    .kv-text { display: flex; flex-direction: column; gap: 24px; min-width: 0; }
+    .kv-meta { flex-direction: column; font-size: 12px; line-height: 1.8; letter-spacing: .12em; }
+    .kv-meta.sp-row { display: none; }
+    .kv-meta.pc-row { display: flex; }
+    .kv-id { display: contents; }
+    .kv-name { font-size: clamp(80px, 8.4vw, 120px); }
+    .kv-role { font-size: 16px; text-align: left; }
+    .kv-role br { display: none; }
+    .kv-role .sep::before { content: ' / '; }
+    .spec { grid-column: 9 / 13; align-self: end; font-size: 13px; }
+    .spec div { grid-template-columns: 96px 1fr; padding: 14px 0; }
+
+    /* Section */
+    .section { padding: 112px var(--gutter); display: block; }
+    .sec-label { grid-column: 1 / 4; }
+    .sec-title { font-size: 14px; }
+
+    .lead { grid-column: 4 / 10; font-size: 16px; line-height: 1.9; }
+
+    .services { grid-column: 4 / 13; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    .service { padding: 24px 24px 32px; border-bottom: 0; border-right: 1px solid var(--line); gap: 16px; }
+    .service:last-child { border-right: 0; }
+    .service-no { font-size: 12px; }
+    .service-ja { font-size: 20px; }
+    .service-desc { font-size: 14px; }
+
+    .perf-head { flex-direction: column; gap: 24px; justify-content: flex-start; }
+    .perf-legend { display: flex; flex-direction: column; gap: 8px; font-size: 12px; }
+    .perf-legend .pc-only { display: inline; }
+    .flyers { grid-column: 4 / 13; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 40px 24px; }
+    .flyer { gap: 12px; }
+    .flyer-img { font-size: 11px; }
+    .flyer-cap { font-size: 12px; border-top: 1px solid var(--line); padding-top: 8px; }
+
+    .contact-body { grid-column: 4 / 9; display: flex; flex-direction: column; gap: 24px; }
+    .contact-body .lead { font-size: 16px; }
+    .cta { height: 72px; padding: 0 24px; font-size: 16px; }
+    .sns { grid-column: 10 / 13; align-self: start; border-top: 1px solid var(--fg); font-size: 13px; }
+    .sns a { height: auto; padding: 16px 0; }
+
+    .site-footer { padding: 24px var(--gutter); font-size: 11px; }
+    .site-footer .pc-only { display: inline; }
+  }
+  @media (max-width: 959px) {
+    .grid12 { display: contents; }
+    .sec-label:not(.perf-head) { display: contents; }
+    .contact-body { display: contents; }
+  }
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <a href="#top" class="logo" aria-label="ICHI トップへ">ICHI</a>
+  <nav class="gnav" aria-label="メインナビゲーション">
+    <a href="#profile">01<span class="lbl">PROFILE</span></a>
+    <a href="#service">02<span class="lbl">SERVICE</span></a>
+    <a href="#performances">03<span class="lbl">PERFORMANCES</span></a>
+    <a href="#contact">04<span class="lbl">CONTACT</span></a>
+  </nav>
+</header>
+
+<main id="top">
+
+  <!-- KV -->
+  <section class="kv" aria-label="イントロダクション">
+    <div class="grid12">
+      <div class="kv-main">
+        <div class="kv-meta sp-row">
+          <span class="js-timecode">00:00:00:00</span>
+          <span>34.69°N / 135.50°E</span>
+        </div>
+        <div class="icon">
+          ICON
+          <!-- アイコン画像を images/icon.jpg に配置してください -->
+          <img src="images/icon.jpg" alt="ICHI" onerror="this.remove()">
+        </div>
+        <div class="kv-text">
+          <div class="kv-meta pc-row">
+            <span><span class="js-timecode">00:00:00:00</span> — PROFILE / VJ</span>
+            <span>34.69°N / 135.50°E</span>
+          </div>
+          <div class="kv-id">
+            <h1 class="kv-name">ICHI</h1>
+            <p class="kv-role">VJ・Visual Operator<br><span class="sep"></span>Based in Osaka</p>
+          </div>
+        </div>
+      </div>
+      <dl class="spec">
+        <div><dt>ROLE</dt><dd>VJ / Visual Operator</dd></div>
+        <div><dt>BASE</dt><dd>Osaka, JP</dd></div>
+        <div><dt>COORD</dt><dd>34.69°N / 135.50°E</dd></div>
+        <div><dt>ALSO</dt><dd>In-house Designer</dd></div>
+      </dl>
+    </div>
+  </section>
+
+  <!-- 01 PROFILE -->
+  <section class="section" id="profile">
+    <div class="grid12">
+      <div class="sec-label"><h2 class="sec-title"><span class="muted">01 /</span>PROFILE</h2></div>
+      <p class="lead jp reveal">大阪を拠点に活動するVJ。全国のナイトクラブや大型音楽フェスを手がける総合エンターテインメント企業で、インハウスデザイナーとして働いています。現場で培ったオペレーションの感覚と、デザイナーとしての視点。その両方から、音と空間に寄り添う映像を組み立てます。</p>
+    </div>
+  </section>
+
+  <!-- 02 SERVICE -->
+  <section class="section" id="service">
+    <div class="grid12">
+      <div class="sec-label"><h2 class="sec-title"><span class="muted">02 /</span>SERVICE</h2></div>
+      <ul class="services">
+        <li class="service reveal">
+          <span class="service-no">S-01 — VJ / VISUAL OPERATION</span>
+          <h3 class="service-ja">VJ・映像オペレーション</h3>
+          <p class="service-desc jp">クラブやフェスの現場で、音に合わせて映像をリアルタイムに操作。機材の持ち込みから当日の進行まで対応します。</p>
+        </li>
+        <li class="service reveal">
+          <span class="service-no">S-02 — LIVE VISUAL PRODUCTION</span>
+          <h3 class="service-ja">Live Visual制作</h3>
+          <p class="service-desc jp">アーティストやイベントのコンセプトに合わせて、ライブ用の映像素材を制作。空間全体のトーンから設計します。</p>
+        </li>
+        <li class="service reveal">
+          <span class="service-no">S-03 — LED INSTALL / RENTAL / SALES</span>
+          <h3 class="service-ja">LEDの施工・レンタル・販売</h3>
+          <p class="service-desc jp">LEDビジョンの設営・施工から、レンタル・販売まで。会場の規模に合わせた構成をご提案します。</p>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- 03 PERFORMANCES -->
+  <section class="section" id="performances">
+    <div class="grid12">
+      <div class="sec-label perf-head">
+        <h2 class="sec-title"><span class="muted">03 /</span>PERFORMANCES</h2>
+        <div class="perf-legend">
+          <span class="on">■ FLYER<span class="pc-only"> (06)</span></span>
+          <span>□ VIDEO<span class="pc-only"> (準備中)</span></span>
+        </div>
+      </div>
+      <!-- フライヤー画像は 1:1 で images/flyer-01.jpg 〜 flyer-06.jpg に配置してください -->
+      <ul class="flyers">
+        <li class="flyer reveal">
+          <div class="flyer-img">FLYER 1:1<img src="images/flyer-01.jpg" alt="EVENT NAME 01 フライヤー" loading="lazy" onerror="this.remove()"></div>
+          <div class="flyer-cap"><div>EVENT NAME 01</div><div class="muted">2026 / VENUE, OSAKA</div></div>
+        </li>
+        <li class="flyer reveal">
+          <div class="flyer-img">FLYER 1:1<img src="images/flyer-02.jpg" alt="EVENT NAME 02 フライヤー" loading="lazy" onerror="this.remove()"></div>
+          <div class="flyer-cap"><div>EVENT NAME 02</div><div class="muted">2025 / VENUE, TOKYO</div></div>
+        </li>
+        <li class="flyer reveal">
+          <div class="flyer-img">FLYER 1:1<img src="images/flyer-03.jpg" alt="EVENT NAME 03 フライヤー" loading="lazy" onerror="this.remove()"></div>
+          <div class="flyer-cap"><div>EVENT NAME 03</div><div class="muted">2025 / VENUE, OSAKA</div></div>
+        </li>
+        <li class="flyer reveal">
+          <div class="flyer-img">FLYER 1:1<img src="images/flyer-04.jpg" alt="EVENT NAME 04 フライヤー" loading="lazy" onerror="this.remove()"></div>
+          <div class="flyer-cap"><div>EVENT NAME 04</div><div class="muted">2024 / VENUE, KOBE</div></div>
+        </li>
+        <li class="flyer reveal">
+          <div class="flyer-img">FLYER 1:1<img src="images/flyer-05.jpg" alt="EVENT NAME 05 フライヤー" loading="lazy" onerror="this.remove()"></div>
+          <div class="flyer-cap"><div>EVENT NAME 05</div><div class="muted">2024 / VENUE, OSAKA</div></div>
+        </li>
+        <li class="flyer reveal">
+          <div class="flyer-img">FLYER 1:1<img src="images/flyer-06.jpg" alt="EVENT NAME 06 フライヤー" loading="lazy" onerror="this.remove()"></div>
+          <div class="flyer-cap"><div>EVENT NAME 06</div><div class="muted">2023 / VENUE, KYOTO</div></div>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- 04 CONTACT -->
+  <section class="section contact-section" id="contact">
+    <div class="grid12">
+      <div class="sec-label"><h2 class="sec-title"><span class="muted">04 /</span>CONTACT</h2></div>
+      <div class="contact-body">
+        <p class="lead jp">出演・制作・LEDに関するご相談はこちらから。</p>
+        <!-- 問い合わせ先（メールアドレス or フォームURL）に差し替えてください -->
+        <a class="cta" href="mailto:mail@example.com"><span>CONTACT / 依頼する</span><span class="arrow" aria-hidden="true">→</span></a>
+      </div>
+      <ul class="sns">
+        <li><a href="https://www.instagram.com/account/" target="_blank" rel="noopener"><span>INSTAGRAM</span><span class="muted">@account ↗</span></a></li>
+        <li><a href="https://x.com/account" target="_blank" rel="noopener"><span>X</span><span class="muted">@account ↗</span></a></li>
+      </ul>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <span>© 2026 ICHI</span>
+  <span class="pc-only">34.69°N / 135.50°E</span>
+  <a href="#top" class="to-top">PAGE TOP ↑</a>
+</footer>
+
+<script>
+  // タイムコード（HH:MM:SS:FF / 30fps）
+  (function () {
+    var els = document.querySelectorAll('.js-timecode');
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    var start = performance.now();
+    function pad(n) { return String(n).padStart(2, '0'); }
+    function tick(now) {
+      var t = (now - start) / 1000;
+      var tc = pad(Math.floor(t / 3600)) + ':' + pad(Math.floor(t / 60) % 60) + ':' +
+               pad(Math.floor(t) % 60) + ':' + pad(Math.floor(t * 30) % 30);
+      for (var i = 0; i < els.length; i++) els[i].textContent = tc;
+      requestAnimationFrame(tick);
+    }
+    requestAnimationFrame(tick);
+  })();
+
+  // スクロール表示 & ナビのアクティブ表示
+  (function () {
+    if (!('IntersectionObserver' in window)) {
+      document.querySelectorAll('.reveal').forEach(function (el) { el.classList.add('is-in'); });
+      return;
+    }
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (e.isIntersecting) { e.target.classList.add('is-in'); io.unobserve(e.target); }
+      });
+    }, { rootMargin: '0px 0px -10% 0px' });
+    document.querySelectorAll('.reveal').forEach(function (el) { io.observe(el); });
+
+    var links = {};
+    document.querySelectorAll('.gnav a').forEach(function (a) { links[a.getAttribute('href').slice(1)] = a; });
+    var nav = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (e.isIntersecting) {
+          Object.keys(links).forEach(function (k) { links[k].classList.toggle('is-active', k === e.target.id); });
+        }
+      });
+    }, { rootMargin: '-45% 0px -50% 0px' });
+    Object.keys(links).forEach(function (id) { nav.observe(document.getElementById(id)); });
+  })();
+</script>
+</body>
+</html>
